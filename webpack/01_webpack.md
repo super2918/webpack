@@ -1,6 +1,6 @@
 ## webpack
 
-### 프로젝트 초기 설정
+### 프로젝트 초기화
 
 1. Node.js를 설치한 후 진행한다.
 
@@ -19,6 +19,9 @@
 ### packge.json
 
 ```json
+
+// package.json
+
 {
   "name": "webpack",
   "version": "1.0.0",
