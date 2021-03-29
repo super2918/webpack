@@ -7,7 +7,7 @@
 /*
 var math = math || {}; // 전역 네임스페이스 선언 math가 있으면 math를 선언하고 아니면 빈 객체를 반환해라 
 
-(function() {
+;(function() {
   function sum(a, b) {
     return a + b;
   }

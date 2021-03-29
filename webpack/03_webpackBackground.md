@@ -64,6 +64,7 @@ math.sum(1, 2);
 3. 브라우저의 모듈 지원
 
 모든 브라우져에서 모듈 시스템을 지원하지는 않는다. 인터넷 익스를 포함한 몇몇 브라우저는 여전히 모듈을 사용하지 못한다.
+type=modules 
 
 index.html
 ```html
@@ -73,3 +74,4 @@ index.html
 ```
 <script> 태그를 로딩할 때 type="text/javascript" 대신 type="module"을 사용한다.
 app.js를 사용가능 해진다.
+
