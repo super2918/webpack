@@ -1,24 +1,21 @@
 {
-  "name": "webpack",
+  "name": "webpack_study",
   "version": "1.0.0",
-  "description": "1. 프론트엔드 개발에 Node.js가 필요한 이유  - 최신 스펙 개발  - 빌드 자동화   - 개발 환경을 커스터마이징   - 개발툴을 자동화된 도구를 사용할 수 없는 환경에서 작업할 경우",
+  "description": "webpack 설정에 대한 공부",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"여기에 스크립트를 추가합니다\""
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/super2918/webpack.git"
+    "url": "git@github.com-me:super2918/webpack_study.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/super2918/webpack/issues"
-  },
-  "homepage": "https://github.com/super2918/webpack#readme",
-  "dependencies": {
-    "react": "^17.0.1"
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
