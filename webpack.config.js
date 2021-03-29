@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js", // 번들링된 파일 명
-    path: path.resolve("./dist") // 절대 경로
+    path: path.resolve("./dist") // 절대 경로 계산해 주는 resolve를 사용해서 작업
   }
 }
 
