@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./math.js */ \"./src/math.js\");\n// console.log(sum(1, 2));\r\n\r\n// IIFE \r\n// console.log(math.sum(1, 2));\r\n\r\n// ES2015 \r\n// import * as math from './src/math.js';\r\n\r\n\r\n// console.log(math.sum(1, 2));\r\nconsole.log(Object(_math_js__WEBPACK_IMPORTED_MODULE_0__[\"sum\"])(1, 2));\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./math.js */ \"./src/math.js\");\n// alert(sum(1, 2));\r\n\r\n// IIFE \r\n// console.log(math.sum(1, 2));\r\n\r\n// ES2015 \r\n// import * as math from './src/math.js';\r\n\r\n\r\n// console.log(math.sum(1, 2));\r\nconsole.log(Object(_math_js__WEBPACK_IMPORTED_MODULE_0__[\"sum\"])(1, 2));\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ }),
 

@@ -8,6 +8,16 @@ module.exports = {
   output: {
     filename: "[name].js", // 번들링된 파일 명
     path: path.resolve("./dist") // 절대 경로 계산해 주는 resolve를 사용해서 작업
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/, // .js로 끝나는 모든 파일 
+        use: [
+          path.resolve('./myloader.js') // 로더를 적용한다. // 파일 이름, 함수이름을 통일 시켜야 하나 본뎅.
+        ]
+      }
+    ]
   }
 }
 
