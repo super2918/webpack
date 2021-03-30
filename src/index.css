@@ -1,0 +1,12 @@
+.test {
+  width: 100vw;
+  height: 100vh;
+  background: url(bg.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+
+.test__item {
+  width: 256px;
+  height: 256px;
+  background: url(nyancat.jpg) no-repeat 0 0;
+}

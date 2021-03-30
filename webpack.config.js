@@ -10,12 +10,19 @@ module.exports = {
     path: path.resolve("./dist") // 절대 경로 계산해 주는 resolve를 사용해서 작업
   },
   module: {
-    rules: [
+    rules: [ 
       {
-        test: /\.js$/, // .js로 끝나는 모든 파일 
-        use: [
-          path.resolve('./myloader.js') // 로더를 적용한다. // 파일 이름, 함수이름을 통일 시켜야 하나 본뎅.
-        ]
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: './dist/',
+          name: '[name].[ext]?[hash]',
+          limit: 10000 // 5kb 미만 파일 data-url 처리
+        }
       }
     ]
   }
