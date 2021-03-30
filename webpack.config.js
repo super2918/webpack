@@ -1,5 +1,6 @@
 const path = require("path");
-const MyPlugin = require("./myplugin");
+const webpack = require("webpack");
+const childPross = require("child_process");
 
 
 module.exports = {
@@ -29,7 +30,21 @@ module.exports = {
     ]
   }, 
   plugins: [
-    new MyPlugin()
+    new webpack.BannerPlugin({
+      banner: () => {
+        const commit = childPross.execSync("git rev-parse  --short HEAD");
+        const user = childPross.execSync("git config user.name");
+        const date = new Date().toLocaleString();
+
+        return `commitVersion : ${commit}\n`+`Build Date: ${date}\n`+`Author: ${user}`
+      }
+    }), 
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify("v.1.2.3"),
+      PRODUCTION: JSON.stringify(false),
+      MAX_COUNT: JSON.stringify(999),
+      "api.domain": JSON.stringify("http://dev.api.domain.com")
+    }),
   ]
 }
 

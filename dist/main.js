@@ -1,8 +1,10 @@
-/**
- * BannerPlugin 처리한 결과이다.
- * Build Date : 2020.03.30
+/*!
+ * commitVersion : 5bf28fc
+ * 
+ * Build Date: 2021. 3. 30. 오후 5:55:03
+ * Author: worksuper2918
+ * 
  */
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -147,7 +149,7 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\r\n\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\r\n\r\n\r\nconsole.log(\"development\")\r\nconsole.log(\"v.1.2.3\")\r\nconsole.log(false)\r\nconsole.log(999)\r\nconsole.log(\"http://dev.api.domain.com\")\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ }),
 
