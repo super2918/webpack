@@ -1,4 +1,6 @@
 const path = require("path");
+const MyPlugin = require("./myplugin");
+
 
 module.exports = {
   mode : "development",
@@ -16,7 +18,7 @@ module.exports = {
         use: [ 'style-loader', 'css-loader']
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
           publicPath: './dist/',
@@ -25,7 +27,10 @@ module.exports = {
         }
       }
     ]
-  }
+  }, 
+  plugins: [
+    new MyPlugin()
+  ]
 }
 
 
