@@ -91,3 +91,55 @@ modlue: {
 
 배열로 설정하면 **뒤에서**부터**앞으로** 로더가 작동을 한다. 위 설정은 모든 .css 확장자로 끝나는 모든 모듈을 읽어 들여 css-laoder를 적용하고 그 다음 style-loader를 적용한다.
 
+#### `file-loader`
+- CSS 뿐만 아니라 소스코드에서 사용하는 모든 파일을 모듈로 사용하게끔 할 수 있다. 파일을 모듈 형태로 지원하고 웹팩 아웃풋에 파일을 옮겨주는 것이 file-loader가 하는 일이다. 
+publicPath 옵션은 file-loader가 처리하는 파일을 모듈로 사용할 때 경로 앞에 추가되는 문자열이다. output에 설정한 'dist' 폴더에 이미지 파일을 옮길 것이므로 publicPath 값을 이것으로로 지정했다. 파일을 사용하는 측에서는 'bg.png'를 'dist/bg.png'로 변경하여 사용할 것이다.
+
+또한 name 옵션을 사용했는데 이것은 로더가 파일을 아웃풋에 복사할때 사용하는 파일 이름이다. 기본적으로 설정된 해쉬값을 쿼리스트링으로 옮겨서 'bg.png?6453a9c65953c5c28aa2130dd437bbde' 형식으로 파일을 요청하도록 변경했다.
+
+```javascript
+  npm install --save-dev file-loader
+
+```
+```css
+ .test {
+   background: url(bg.png);
+ }
+```
+
+```javascript
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: './dist/',
+          name: '[name].[ext]?[hash]',
+          limit: 10000 // 5kb 미만 파일 data-url 처리
+        }
+      }
+    ],
+  },
+```
+
+#### `url-loader`
+- 사용하는 이미지 갯수가 많다면 네트웍 리소스를 사용하는 부담이 있고 사이트 성능에 영향을 줄 수도 있다. 만약 한 페이지에서 작은 이미지를 여러 개 사용한다면 Data URI Scheme을 이용하는 방법이 더 나은 경우도 있다. 이미지를 Base64로 인코딩하여 문자열 형태로 소스코드에 넣는 형식이다. 아이콘처럼 용량이 작거나 사용 빈도가 높은 이미지는 파일을 그대로 사용하기 보다는 Data URI Scheeme을 적용하기 위해 url-loader를 사용하면 좋겠다.
+
+```javascript
+  npm install --save-dev url-loader
+```
+
+```javascript
+  {
+    test: /\.png$/,
+    use: {
+      loader: 'url-loader', // url 로더를 설정한다
+      options: {
+        publicPath: './dist/', // file-loader와 동일
+        name: '[name].[ext]?[hash]', // file-loader와 동일
+        limit: 5000 // 5kb 미만 파일만 data url로 처리
+      }
+    }
+  }
+```
