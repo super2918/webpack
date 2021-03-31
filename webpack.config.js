@@ -1,28 +1,36 @@
-const path = require("path");
-const webpack = require("webpack");
-const childPross = require("child_process");
+const path = require('path');
+const webpack = require('webpack');
+const childPross = require('child_process');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 
 module.exports = {
-  mode : "development",
+  mode : 'development',
   entry : {
-    main : "./src/app.js"
+    main : './src/app.js'
   },
   output: {
-    filename: "[name].js", // 번들링된 파일 명
+    filename: '[name].js',
     path: path.resolve("./dist") // 절대 경로 계산해 주는 resolve를 사용해서 작업
   },
   module: {
     rules: [ 
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader']
+        use: [ 
+          process.env.NODE_ENV === 'production'
+          ? MiniCssExtractPlugin.loader// 프로덕션 환경
+          : "style-loader",  // 개발환경
+          "css-loader"
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          publicPath: './dist/',
+          // publicPath: './dist/',
           name: '[name].[ext]?[hash]',
           limit: 10000 // 5kb 미만 파일 data-url 처리
         }
@@ -32,19 +40,34 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin({
       banner: () => {
-        const commit = childPross.execSync("git rev-parse  --short HEAD");
-        const user = childPross.execSync("git config user.name");
+        const commit = childPross.execSync('git rev-parse  --short HEAD');
+        const user = childPross.execSync('git config user.name');
         const date = new Date().toLocaleString();
 
         return `commitVersion : ${commit}\n`+`Build Date: ${date}\n`+`Author: ${user}`
       }
     }), 
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify("v.1.2.3"),
-      PRODUCTION: JSON.stringify(false),
-      MAX_COUNT: JSON.stringify(999),
-      "api.domain": JSON.stringify("http://dev.api.domain.com")
+    // new webpack.DefinePlugin({
+    //   VERSION: JSON.stringify("v.1.2.3"),
+    //   PRODUCTION: JSON.stringify(false),
+    //   MAX_COUNT: JSON.stringify(999),
+    //   "api.domain": JSON.stringify("http://dev.api.domain.com")
+    // }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // 템플릿 경로를 지정
+      templateParameters: { // 템플릿 주입할 파라매터 변수 지정
+        env: process.env.NODE_ENV === 'development' ? '개발용' : ''
+      },
+      minify : process.env.NODE_ENV === 'production' ? { // 개발용이랑 배포용이랑 다른게 
+        collapseWhitespace: true, // 빈칸 제거
+        removeComments: true, // 주석제거
+        hash: true // 정적 파일을 불러올때 쿼리 문자열에 웹팩 헤쉬값을 추가
+      } : false
     }),
+    new CleanWebpackPlugin(),
+    ...(process.env.NODE_ENV === "production"
+    ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
+    : []),
   ]
 }
 
