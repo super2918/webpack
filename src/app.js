@@ -1,8 +1,5 @@
 import './index.css';
 
+const alet = msg => window.alert(msg);
+new Promise();
 
-// console.log(process.env.NODE_ENV)
-// console.log(VERSION)
-// console.log(PRODUCTION)
-// console.log(MAX_COUNT)
-// console.log(api.domain)

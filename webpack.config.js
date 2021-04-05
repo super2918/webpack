@@ -6,6 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 
+process.env.NODE_ENV ==  process.env.NODE_ENV || 'development';
+
 module.exports = {
   mode : 'development',
   entry : {
@@ -16,7 +18,7 @@ module.exports = {
     path: path.resolve("./dist") // 절대 경로 계산해 주는 resolve를 사용해서 작업
   },
   module: {
-    rules: [ 
+    rules: [
       {
         test: /\.css$/,
         use: [ 
@@ -34,6 +36,11 @@ module.exports = {
           name: '[name].[ext]?[hash]',
           limit: 10000 // 5kb 미만 파일 data-url 처리
         }
+      },
+      {
+        test: /\.js$/, 
+        exclude: /node_modules/, // 사용하는 라이브러리가 많을수록 바벨 로더가 느리게 동작 > modules 폴더가 로더를 처리하지 않도록 제외
+        loader: "babel-loader" // babel-loader 추가 
       }
     ]
   }, 

@@ -1,27 +1,30 @@
-// class로 정의  
-class MyPlugin {
-  apply(compiler) {
-    compiler.hooks.done.tap( 'My Plugin', status => {
-      console.log('My Plugin: done')
-    })
+// s
+module.exports = function myplugin() {
+  return  {
+    // visitor : {
+    //   Identifier (path) {
+    //     const name = path.node.name;
+    //     // 바벨이 만든 AST 노드르 출력한다.
+    //     console.log("Identifier() name:" , name)
 
-    compiler.plugin("emit", (compilation, callback) => {
-      const source = compilation.assets["main.js"].source() // 소스에 접근을 가능한 
-      // console.log(source)
+    //     // 변환작업: 코드 문자열을 역순으로 변홚한다.
+    //     path.node.name = name
+    //     .split('')
+    //     .reverse()
+    //     .join('')
+    //   }
+    // }
 
-    compilation.assets["main.js"].source = () => {
-      const banner = [
-        '/**',
-        ' * BannerPlugin 처리한 결과이다.',
-        ' * Build Date : 2020.03.30',
-        ' */'
-      ].join('\n');
+    visitor: {
+      // 익스 되도록 const => var로 변경하는 플러그인
+      //https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-block-scoping/src/index.js#L26
+      VariableDeclaration(path) {
+        console.log("variableDecalaration() kind:", path.node.kind) // const 
 
-      return banner + '\n\n' + source
+        if(path.node.kind === "const") {
+          path.node.kind = "var"
+        }
+      }
     }
-      callback()
-    })
   }
 }
-
-module.exports = MyPlugin;
