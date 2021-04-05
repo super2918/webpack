@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin({
       banner: () => {
-        const commit = childPross.execSync('git rev-parse  --short HEAD');
+        const commit = childPross.execSync('git rev-parse --short HEAD');
         const user = childPross.execSync('git config user.name');
         const date = new Date().toLocaleString();
 
